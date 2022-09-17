@@ -1,0 +1,75 @@
+service: mechen-api
+
+custom:
+  env: ${opt:stage, 'dev'}
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${self:custom.env}
+  region: us-east-1
+  timeout: 900
+
+functions:
+  api:
+    # DependsOn: CognitoUserPool
+    handler: lambda.handler # reference the file and exported method
+    events: # events trigger lambda functions
+      - http: # this is an API Gateway HTTP event trigger
+          path: /
+          method: ANY
+          cors: true
+          # authorizer:
+          #   name: cognitoAuthorizer
+          #   type: COGNITO_USER_POOLS
+          #   arn:
+          #     Fn::GetAtt:
+          #       - CognitoUserPoolAppUserPool
+          #       - Arn
+      - http: # all routes get proxied to the Express router
+          path: /{proxy+}
+          method: ANY
+          cors: true
+          # authorizer:
+          #   name: cognitoAuthorizer
+          #   type: COGNITO_USER_POOLS
+          #   arn:
+          #     Fn::GetAtt:
+          #       - CognitoUserPoolAppUserPool
+          #       - Arn
+
+  # preSignUp:
+  #   handler: lambda-presignup.handler
+  #   events:
+  #     - cognitoUserPool:
+  #         pool: AppUserPool
+  #         trigger: PreSignUp
+
+# resources:
+#   Resources:
+#     # Creates a user pool in cognito
+#     CognitoUserPoolAppUserPool:
+#       Type: "AWS::Cognito::UserPool"
+#       Properties:
+#         UserPoolName: "mechen-api-userpool-${self:custom.env}"
+#         MfaConfiguration: "OFF"
+#         AutoVerifiedAttributes:
+#           - email
+#         AliasAttributes:
+#           - email
+#         Schema:
+#           - Name: email
+#             AttributeDataType: String
+#             Mutable: false
+#             Required: true
+
+#     # Creates a User Pool Client
+#     UserPoolClient:
+#       Type: "AWS::Cognito::UserPoolClient"
+#       Properties:
+#         ClientName: "mechen-api-client-${self:custom.env}"
+#         GenerateSecret: false
+#         UserPoolId:
+#           Ref: CognitoUserPoolAppUserPool
+
+plugins:
+  - serverless-offline

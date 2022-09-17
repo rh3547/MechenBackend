@@ -1,0 +1,10 @@
+{
+  "name": "db",
+  "connector": "mysql",
+  "url": "",
+  "host": "rhochmuth-dev.chjowozh0yh4.us-east-1.rds.amazonaws.com",
+  "port": 3306,
+  "user": "admin",
+  "password": "92ad2r8KBt",
+  "database": "mechen-dev"
+}

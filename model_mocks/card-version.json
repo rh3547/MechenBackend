@@ -1,0 +1,21 @@
+{
+  "id": 3,
+  "version": 2,
+  "imageUrl": "https://mechen-card-art.s3.amazonaws.com/Standard+Biped+Core+v2.png",
+  "abilityText": "Core Energy Generation: 1 energy 2 rounds.",
+  "legSlots": 2,
+  "armslots": 2,
+  "headSlots": 1,
+  "hardpointSlots": 0,
+  "modSlots": 0,
+  "coreHealth": 20,
+  "armor": 5,
+  "agility": 3,
+  "energy": 4,
+  "cooldown": 0,
+  "minRange": 0,
+  "maxRange": 0,
+  "direction": "",
+  "areaOfEffect": "",
+  "cardId": 1
+}
