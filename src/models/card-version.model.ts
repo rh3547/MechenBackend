@@ -20,6 +20,29 @@ export class CardVersion extends Entity {
     type: 'string',
     required: true,
   })
+  name: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  type: string;
+
+  @property({
+    type: 'string',
+  })
+  subtype?: string;
+
+  @property({
+    type: 'string',
+    default: "Common",
+  })
+  rarity?: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
   imageUrl: string;
 
   @property({
