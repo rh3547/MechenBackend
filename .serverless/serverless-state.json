@@ -77,12 +77,6 @@
               "LogGroupName": "/aws/lambda/mechen-api-dev-api"
             }
           },
-          "PreSignUpLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/mechen-api-dev-preSignUp"
-            }
-          },
           "IamRoleLambdaExecution": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -167,7 +161,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/mechen-api/dev/1599603958359-2020-09-08T22:25:58.359Z/mechen-api.zip"
+                "S3Key": "serverless/mechen-api/dev/1663533842554-2022-09-18T20:44:02.554Z/mechen-api.zip"
               },
               "FunctionName": "mechen-api-dev-api",
               "Handler": "lambda.handler",
@@ -185,49 +179,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionzezeK700dGpvFOTZwZaW3RqWAdiGXu4MPgGevkwEV4U": {
+          "ApiLambdaVersionlQJ1PzDVvPCurRLcowyuGWkwQJKHNT0hfi6ik4uCM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "ImUqCmNYxpjtxJKFND3Rv9RbYSxQAEsx6PaJFNb8NWE="
-            }
-          },
-          "PreSignUpLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/mechen-api/dev/1599603958359-2020-09-08T22:25:58.359Z/mechen-api.zip"
-              },
-              "FunctionName": "mechen-api-dev-preSignUp",
-              "Handler": "lambda-presignup.handler",
-              "MemorySize": 1024,
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              },
-              "Runtime": "nodejs14.x",
-              "Timeout": 900
-            },
-            "DependsOn": [
-              "PreSignUpLogGroup"
-            ]
-          },
-          "PreSignUpLambdaVersionHg7WYFhkwltr7c0VpprjxsB9FSKW65rpbKaLveaRyU": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "PreSignUpLambdaFunction"
-              },
-              "CodeSha256": "ImUqCmNYxpjtxJKFND3Rv9RbYSxQAEsx6PaJFNb8NWE="
+              "CodeSha256": "53vFNj2gzJKDqAcFmmPCY+yUSjHNcjXOijH20m2UK0g="
             }
           },
           "ApiGatewayRestApi": {
@@ -365,10 +324,7 @@
                 "Ref": "ApiGatewayRestApi"
               },
               "ApiKeyRequired": false,
-              "AuthorizationType": "COGNITO_USER_POOLS",
-              "AuthorizerId": {
-                "Ref": "CognitoAuthorizerApiGatewayAuthorizer"
-              },
+              "AuthorizationType": "NONE",
               "Integration": {
                 "IntegrationHttpMethod": "POST",
                 "Type": "AWS_PROXY",
@@ -397,8 +353,7 @@
                 }
               },
               "MethodResponses": []
-            },
-            "DependsOn": "CognitoAuthorizerApiGatewayAuthorizer"
+            }
           },
           "ApiGatewayMethodProxyVarAny": {
             "Type": "AWS::ApiGateway::Method",
@@ -412,10 +367,7 @@
                 "Ref": "ApiGatewayRestApi"
               },
               "ApiKeyRequired": false,
-              "AuthorizationType": "COGNITO_USER_POOLS",
-              "AuthorizerId": {
-                "Ref": "CognitoAuthorizerApiGatewayAuthorizer"
-              },
+              "AuthorizationType": "NONE",
               "Integration": {
                 "IntegrationHttpMethod": "POST",
                 "Type": "AWS_PROXY",
@@ -444,30 +396,9 @@
                 }
               },
               "MethodResponses": []
-            },
-            "DependsOn": "CognitoAuthorizerApiGatewayAuthorizer"
-          },
-          "CognitoAuthorizerApiGatewayAuthorizer": {
-            "Type": "AWS::ApiGateway::Authorizer",
-            "Properties": {
-              "AuthorizerResultTtlInSeconds": 300,
-              "IdentitySource": "method.request.header.Authorization",
-              "Name": "cognitoAuthorizer",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "Type": "COGNITO_USER_POOLS",
-              "ProviderARNs": [
-                {
-                  "Fn::GetAtt": [
-                    "CognitoUserPoolAppUserPool",
-                    "Arn"
-                  ]
-                }
-              ]
             }
           },
-          "ApiGatewayDeployment1599603932306": {
+          "ApiGatewayDeployment1663533823601": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -518,67 +449,6 @@
                 ]
               }
             }
-          },
-          "CognitoUserPoolAppUserPool": {
-            "Type": "AWS::Cognito::UserPool",
-            "Properties": {
-              "UserPoolName": "mechen-api-userpool",
-              "LambdaConfig": {
-                "PreSignUp": {
-                  "Fn::GetAtt": [
-                    "PreSignUpLambdaFunction",
-                    "Arn"
-                  ]
-                }
-              },
-              "MfaConfiguration": "OFF",
-              "AutoVerifiedAttributes": [
-                "email"
-              ],
-              "AliasAttributes": [
-                "email"
-              ],
-              "Schema": [
-                {
-                  "Name": "email",
-                  "AttributeDataType": "String",
-                  "Mutable": false,
-                  "Required": true
-                }
-              ]
-            },
-            "DependsOn": [
-              "PreSignUpLambdaFunction"
-            ]
-          },
-          "PreSignUpLambdaPermissionCognitoUserPoolAppUserPoolTriggerSourcePreSignUp": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "PreSignUpLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "cognito-idp.amazonaws.com",
-              "SourceArn": {
-                "Fn::GetAtt": [
-                  "CognitoUserPoolAppUserPool",
-                  "Arn"
-                ]
-              }
-            }
-          },
-          "UserPoolClient": {
-            "Type": "AWS::Cognito::UserPoolClient",
-            "Properties": {
-              "ClientName": "mechen-api-mobile",
-              "GenerateSecret": false,
-              "UserPoolId": {
-                "Ref": "CognitoUserPoolAppUserPool"
-              }
-            }
           }
         },
         "Outputs": {
@@ -590,13 +460,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionzezeK700dGpvFOTZwZaW3RqWAdiGXu4MPgGevkwEV4U"
-            }
-          },
-          "PreSignUpLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "PreSignUpLambdaVersionHg7WYFhkwltr7c0VpprjxsB9FSKW65rpbKaLveaRyU"
+              "Ref": "ApiLambdaVersionlQJ1PzDVvPCurRLcowyuGWkwQJKHNT0hfi6ik4uCM"
             }
           },
           "ServiceEndpoint": {
@@ -693,13 +557,15 @@
       },
       "vpc": {}
     },
+    "custom": {
+      "env": "dev"
+    },
     "plugins": [
       "serverless-offline"
     ],
     "pluginsData": {},
     "functions": {
       "api": {
-        "DependsOn": "CognitoUserPool",
         "handler": "lambda.handler",
         "events": [
           {
@@ -724,20 +590,6 @@
                   "X-Amz-User-Agent"
                 ],
                 "allowCredentials": false
-              },
-              "authorizer": {
-                "type": "COGNITO_USER_POOLS",
-                "name": "cognitoAuthorizer",
-                "arn": {
-                  "Fn::GetAtt": [
-                    "CognitoUserPoolAppUserPool",
-                    "Arn"
-                  ]
-                },
-                "managedExternally": false,
-                "resultTtlInSeconds": 300,
-                "identitySource": "method.request.header.Authorization",
-                "claims": []
               },
               "integration": "AWS_PROXY"
             }
@@ -765,20 +617,6 @@
                 ],
                 "allowCredentials": false
               },
-              "authorizer": {
-                "type": "COGNITO_USER_POOLS",
-                "name": "cognitoAuthorizer",
-                "arn": {
-                  "Fn::GetAtt": [
-                    "CognitoUserPoolAppUserPool",
-                    "Arn"
-                  ]
-                },
-                "managedExternally": false,
-                "resultTtlInSeconds": 300,
-                "identitySource": "method.request.header.Authorization",
-                "claims": []
-              },
               "integration": "AWS_PROXY"
             }
           }
@@ -789,70 +627,16 @@
         "timeout": 900,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionzezeK700dGpvFOTZwZaW3RqWAdiGXu4MPgGevkwEV4U"
-      },
-      "preSignUp": {
-        "handler": "lambda-presignup.handler",
-        "events": [
-          {
-            "cognitoUserPool": {
-              "pool": "AppUserPool",
-              "trigger": "PreSignUp"
-            }
-          }
-        ],
-        "name": "mechen-api-dev-preSignUp",
-        "package": {},
-        "memory": 1024,
-        "timeout": 900,
-        "runtime": "nodejs14.x",
-        "vpc": {},
-        "versionLogicalId": "PreSignUpLambdaVersionHg7WYFhkwltr7c0VpprjxsB9FSKW65rpbKaLveaRyU"
+        "versionLogicalId": "ApiLambdaVersionlQJ1PzDVvPCurRLcowyuGWkwQJKHNT0hfi6ik4uCM"
       }
-    },
-    "resources": {
-      "Resources": {
-        "CognitoUserPoolAppUserPool": {
-          "Type": "AWS::Cognito::UserPool",
-          "Properties": {
-            "UserPoolName": "mechen-api-userpool",
-            "MfaConfiguration": "OFF",
-            "AutoVerifiedAttributes": [
-              "email"
-            ],
-            "AliasAttributes": [
-              "email"
-            ],
-            "Schema": [
-              {
-                "Name": "email",
-                "AttributeDataType": "String",
-                "Mutable": false,
-                "Required": true
-              }
-            ]
-          }
-        },
-        "UserPoolClient": {
-          "Type": "AWS::Cognito::UserPoolClient",
-          "Properties": {
-            "ClientName": "mechen-api-mobile",
-            "GenerateSecret": false,
-            "UserPoolId": {
-              "Ref": "CognitoUserPoolAppUserPool"
-            }
-          }
-        }
-      },
-      "Outputs": {}
     },
     "serviceFilename": "serverless.yml",
     "layers": {},
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "D:\\Projects\\Programming\\Ranks\\Code\\ranks-backend-loopback\\.serverless\\mechen-api.zip"
+    "artifact": "D:\\Projects\\Mech Card Game\\Software\\backend\\.serverless\\mechen-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/mechen-api/dev/1599603958359-2020-09-08T22:25:58.359Z",
+    "artifactDirectoryName": "serverless/mechen-api/dev/1663533842554-2022-09-18T20:44:02.554Z",
     "artifact": "mechen-api.zip"
   }
 }
