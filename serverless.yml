@@ -8,6 +8,8 @@ provider:
   stage: ${self:custom.env}
   region: us-east-1
   timeout: 900
+# package:
+#   individually: true
 package:
   exclude:
     - node_modules/**

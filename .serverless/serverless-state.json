@@ -161,7 +161,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/mechen-api/dev/1663533842554-2022-09-18T20:44:02.554Z/mechen-api.zip"
+                "S3Key": "serverless/mechen-api/dev/1663601498291-2022-09-19T15:31:38.291Z/mechen-api.zip"
               },
               "FunctionName": "mechen-api-dev-api",
               "Handler": "lambda.handler",
@@ -179,14 +179,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionlQJ1PzDVvPCurRLcowyuGWkwQJKHNT0hfi6ik4uCM": {
+          "ApiLambdaVersionWqHTwbpAEXtOivJ792HEnkV6ljyuJZuikgH7EskLQEE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "53vFNj2gzJKDqAcFmmPCY+yUSjHNcjXOijH20m2UK0g="
+              "CodeSha256": "eegDDVVHTj7j7RczSz1VAe0+BwAhfcAREY1XXSnAQ7c="
             }
           },
           "ApiGatewayRestApi": {
@@ -398,7 +398,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1663533823601": {
+          "ApiGatewayDeployment1663601478503": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -460,7 +460,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionlQJ1PzDVvPCurRLcowyuGWkwQJKHNT0hfi6ik4uCM"
+              "Ref": "ApiLambdaVersionWqHTwbpAEXtOivJ792HEnkV6ljyuJZuikgH7EskLQEE"
             }
           },
           "ServiceEndpoint": {
@@ -627,7 +627,7 @@
         "timeout": 900,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionlQJ1PzDVvPCurRLcowyuGWkwQJKHNT0hfi6ik4uCM"
+        "versionLogicalId": "ApiLambdaVersionWqHTwbpAEXtOivJ792HEnkV6ljyuJZuikgH7EskLQEE"
       }
     },
     "serviceFilename": "serverless.yml",
@@ -636,7 +636,7 @@
     "artifact": "D:\\Projects\\Mech Card Game\\Software\\backend\\.serverless\\mechen-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/mechen-api/dev/1663533842554-2022-09-18T20:44:02.554Z",
+    "artifactDirectoryName": "serverless/mechen-api/dev/1663601498291-2022-09-19T15:31:38.291Z",
     "artifact": "mechen-api.zip"
   }
 }
