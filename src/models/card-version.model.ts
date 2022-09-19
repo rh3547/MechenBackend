@@ -41,7 +41,7 @@ export class CardVersion extends Entity {
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   imageUrl: string;
 

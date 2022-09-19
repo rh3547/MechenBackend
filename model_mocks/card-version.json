@@ -1,6 +1,10 @@
 {
   "id": 3,
   "version": 2,
+  "name": "Standard Biped Core",
+  "type": "Core",
+  "subtype": "Standard",
+  "rarity": "Common",
   "imageUrl": "https://mechen-card-art.s3.amazonaws.com/Standard+Biped+Core+v2.png",
   "abilityText": "Core Energy Generation: 1 energy 2 rounds.",
   "legSlots": 2,
