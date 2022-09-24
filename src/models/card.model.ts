@@ -33,6 +33,13 @@ export class Card extends Entity {
   })
   rarity?: string;
 
+  @property({
+    type: 'boolean',
+    default: false,
+    required: true
+  })
+  approved: boolean;
+
   @hasMany(() => CardVersion)
   cardVersions: CardVersion[];
 

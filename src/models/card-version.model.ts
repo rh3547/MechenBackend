@@ -35,6 +35,11 @@ export class CardVersion extends Entity {
 
   @property({
     type: 'string',
+  })
+  manufacturer?: string;
+
+  @property({
+    type: 'string',
     default: "Common",
   })
   rarity?: string;

@@ -3,5 +3,6 @@
   "name": "Standard Biped Core",
   "type": "Core",
   "subtype": "Standard",
-  "rarity": "Common"
+  "rarity": "Common",
+  "approved": true
 }
