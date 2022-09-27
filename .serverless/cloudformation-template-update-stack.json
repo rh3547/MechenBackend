@@ -146,7 +146,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/mechen-api/dev/1664034875975-2022-09-24T15:54:35.975Z/mechen-api.zip"
+          "S3Key": "serverless/mechen-api/dev/1664239163655-2022-09-27T00:39:23.655Z/mechen-api.zip"
         },
         "FunctionName": "mechen-api-dev-api",
         "Handler": "lambda.handler",
@@ -164,14 +164,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionWqZb5S0I4mTCzJI5WdUdGwBuz9h1RNZfXQkivyIjrI": {
+    "ApiLambdaVersionouzbdzTKFJGEkaoIbdwmEeiiGuyAiuELex5TWs24": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "UXICVcA45l0v7AemA4kLFqdcCioE6znaW++wxV5TmsA="
+        "CodeSha256": "OcgEotE5KiA/+Kos6QJFPLr76M658oyNRoYqsfN8BHk="
       }
     },
     "ApiGatewayRestApi": {
@@ -383,7 +383,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1664034816809": {
+    "ApiGatewayDeployment1664239126143": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -445,7 +445,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionWqZb5S0I4mTCzJI5WdUdGwBuz9h1RNZfXQkivyIjrI"
+        "Ref": "ApiLambdaVersionouzbdzTKFJGEkaoIbdwmEeiiGuyAiuELex5TWs24"
       }
     },
     "ServiceEndpoint": {
